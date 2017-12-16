@@ -39,6 +39,10 @@ private afs: AngularFirestore){
             this.title = "Edit User";                        
             this.userDoc = this.afs.doc('users/'+this.id);            
             this.singleUser = this.userDoc.valueChanges();
+            this.singleUser.subscribe((user) =>{
+                this.form.get('username').setValue(user.name);                
+                this.form.get('email').setValue(user.email);                                
+            });            
         }        
     }    
 
